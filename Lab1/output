@@ -1,0 +1,114 @@
+// ls
+sh-4.2$ ls
+main.c  output  TerminalOverview
+
+// mkdir
+-bash-4.2$ mkdir testfile
+-bash-4.2$ ls
+main.c  output  TerminalOverview  testfile
+
+// cd
+-bash-4.2$ cd TerminalOverview
+-bash-4.2$ ls
+README.md
+
+// man
+// command: man sort (copy of the first page of the manual on the sort command)
+SORT(1)                          User Commands                         SORT(1)
+
+NAME
+       sort - sort lines of text files
+
+SYNOPSIS
+       sort [OPTION]... [FILE]...
+       sort [OPTION]... --files0-from=F
+
+DESCRIPTION
+       Write sorted concatenation of all FILE(s) to standard output.
+
+       Mandatory  arguments  to  long  options are mandatory for short options
+       too.  Ordering options:
+
+       -b, --ignore-leading-blanks
+              ignore leading blanks
+
+       -d, --dictionary-order
+              consider only blanks and alphanumeric characters
+
+       -f, --ignore-case
+              fold lower case to upper case characters
+
+// rmdir
+-bash-4.2$ ls
+main.c  output  TerminalOverview  testfile
+-bash-4.2$ rmdir testfile
+-bash-4.2$ ls
+main.c  output  TerminalOverview
+
+// sort
+// number comes before letter, and letter arranged alphabetically
+-bash-4.2$ vim text
+-bash-4.2$ sort text
+
+13
+1name
+alex
+annie
+github
+zebra
+
+// cat 
+-bash-4.2$ cat text
+annie
+1name
+github
+zebra
+alex
+13
+
+
+// nl
+-bash-4.2$ nl text
+     1	annie
+     2	1name
+     3	github
+     4	zebra
+     5	alex
+     6	13
+       
+-bash-4.2$ nl -
+Annie
+     1	Annie
+Dinh
+     2	Dinh
+Is
+     3	Is
+Having
+     4	Having
+Fun
+     5	Fun
+^[
+     6	
+C
+-bash-4.2$ nl -i 2 text
+     1	annie
+     3	1name
+     5	github
+     7	zebra
+     9	alex
+    11	13
+       
+// cut
+-bash-4.2$ echo 'foobar' | cut -c 2,4
+ob
+
+// grep
+-bash-4.2$ grep --color "n" text
+// should have highlighted "n" in red
+annie
+1name
+-bash-4.2$ grep --color -n "n" text
+// highlight "n" in red and gve the line number
+1:annie
+2:1name
+

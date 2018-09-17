@@ -1,0 +1,20 @@
+Example 2:
+- When I run ./example2 & -> the process seems to run forever with the parent process
+- The child process terminates but still occupy one of the pid (labeled "defunct" in the ps table)
+- Without the kill command, the process would run forever (the parent process)
+- Killing the child process will not end the parent process, so if you execute the kill command on the child process, also need to kill the parent process to terminate the execution
+- Killing the parent process will end the execution
+
+Example 3:
+- It is the reverse condition of example 2
+- The child process now run forever 
+- ps shows that the child process is still running (time is being incremented)
+- Need to kill the process to end the run. If kill the parent process, will also terminate the child
+
+Example 4:
+- Child runs after the parent is entered -> wait function
+- Terminate before returning to the parent process and the parent will then continue here
+- ps shows that the program terminates
+
+Example 5
+

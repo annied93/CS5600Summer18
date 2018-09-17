@@ -1,0 +1,40 @@
+Compiler generated assembly 1:
+- difference in long and int assembly code are the lines that have numbers will double (from int to long)
+- have more space in long, therefore have to offset by double the amount
+
+Compiler generated assembly 2:
+-  in swap_int.s, most of the registers being used are 32-bit registers (%eax, %edx)
+- swap.s make use of more 64-bit registers, both in main and in helper (%rax, %rdx, %rsi, %rdi)
+
+Compiler generated assembly 3:
+- offsets from the address for the first item is 1600, then 1320, 1040, 760, 480, and 200
+- this occurs due to the steps required to access a position in a statically allocated array: calculate the offset to specific elements from the fixed address before we can access it
+- one strange observation we gathered from this part was that the offsets produced by my compiler on the Macbook Air running Mac OS High Sierra was different from that of my partner, running on ... (add in)
+- this might be the case due to the different version of the gcc compiler we are using: MBA 4.2.1
+
+Compiler generated assembly 4:
+- with dynamically allocated array, when the values are assigned to certain positions, there is no offsets seen in the assembly code
+- this is due to the steps taken to access the position: first, the pointer variable is read, then the offset is calculated by the compiler before they move to the pointer position for that space to store the value as specified
+- (question for professor: https://stackoverflow.com/questions/34847662/is-accessing-statically-or-dynamically-allocated-memory-faste
+
+Compiler generated assembly 5:
+- the jmp statement that was inserted was 'jne' ~ jump when not equal to 0
+- this will jump the program to the condition statement for when the if clause is not satisfied (or number is not divisible by 2)
+
+Compiler generated assembly 6:
+- the condition statement was executed at the end of the code
+- during the execution, the loop progresses with the 'jg' statement ~ circle back to the start as long as the condition is not met
+- after the condition is met, then the print statement is executed in order
+
+Compiler generated assembly 7:
+- switch statement generates a lot of moving of variables around
+- this results in a lot of offsets in the code
+- this code is not optimal compared to the goto statement code
+
+Compiler generated assembly 8:
+- the program first moves the two numbers into registers %rsi, %rdi, then move them from there into %rbp, afterwhich it was moved back to %rsi when the add function occurs
+- then, result is moved from %rsi to default %rax
+- these are done to restore registers from base of frame
+- afterwards, the stack pointer is reset
+- 'popq' is used with the %rbp register right before the return command
+- this is done to save the register, before it is called again: it ensures that no matter what changes is done to the stack pointer, it would be restored to the original state 

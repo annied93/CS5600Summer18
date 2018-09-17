@@ -1,0 +1,73 @@
+	This tutorial will serve to provide a guideline for writing a bash script to process data from an input file. The file could be a .csv or .txt file.
+The processing done in this script would be a basic filtering based on a parameter in a specific column, and/or a sorting operation of the file based on a column selected. Often time, people would want to process and extract specific data from a .csv or .txt file that contains millions of lines of data, so being able to filter out information and/or sort the information in a specific way would be helpful in data analysis moving forward. 
+	In this specific script, the user will have the option of specifying the input file and the desired name for the output file on the command line as they run the script. If no input was offered, then the program would prompt the user for the names of the files. In addition, the program would also inquire for additional details - specifically the delmiter used in the source file, and whether the user would like to run a filter and/or sort operation on the file, with the output being added to a file with the name specified by the user. 
+	It is noted that the program (at this point) will only run if it is in the same directory as the source file, and the output file will be created in the same directory. The program also would not check whether the output file already existed in the directory or not, instead it would override the old file and write the output of this execution into it. 
+	
+	Some of the commands that are used in this script and would be useful to know include:
+1) echo: This command will write its argument to standard output, which means when the script is run, it will print the arguments onto the terminal as output. 
+Example:
+echo "Print this line" 
+-bash-4.2$ echo "Print this"
+Print this
+
+2) read: This will read the user input and store it in the specified variable
+Example:
+echo -n "Enter file name to process: "
+        read FILE
+
+3) touch: This will create a new file with the file name as the specified value
+Example:
+-bash-4.2$ touch newFile.txt
+-bash-4.2$ ls
+bank.csv  filterSort.sh  newFile.txt  README.md
+
+4) awk: This command will execute some action based on the specified pattern, with input coming from the input file and output can be written into an output file. This is an increasingly versatile comamnd that is extremely useful in analyzing text files/.csv files, those with data organized by rows and columns. 
+Example:
+-bash-4.2$ awk -F, '$3 ~/no/ {print $0}' mini.csv > mini-out.csv
+
+5) sort: This will sort the file based on a specified column value. It will sort by number first, and alphabetically following, by default.
+Example:
+-bash-4.2$ sort -k 1 -t , -o mini-sort.csv mini.csv
+6) cat: This function is very versatile. In this tutorial, it is used to merge to files, with the first file at the bottom of the second file.
+Example:
+Ans-MacBook-Air:Assignment1 AnnieDinh$ cat file1.txt >> file2.txt
+
+	When the script is eecuted, it will look something like follow:
+-bash-4.2$ ./filterSort.sh bank.csv output.txt
+Enter separator of source file: ,
+Do you want to filter the file? (y/n): y
+Enter column for filter: 3
+Enter parameter name for filter: married
+Do you want to sort the output file? (y/n): y
+Enter column for sorting of output: 1
+Completed.
+
+	If the user does not specify the input, it will look something like this:
+-bash-4.2$ ./filterSort.sh
+Enter file name to process: bank.csv
+Enter separator of source file: ,
+Enter desired output file name: no-input.csv
+Do you want to filter the file? (y/n): y
+Enter column for filter: 2
+Enter parameter name for filter: unemployed
+Do you want to sort the output file? (y/n): n
+Completed.
+
+	If the user does not wish to filter the input, but instead just sort it, it will look something like this:
+Ans-MacBook-Air:Assignment1 AnnieDinh$ ./filterSort.sh
+Enter file name to process: bank.csv
+Enter separator of source file: ,
+Enter desired output file name: nofiltersort.txt
+Do you want to filter the file? (y/n): n
+Do you want to sort the input file? (y/n): y
+Enter column for sorting of output: 1
+Completed.
+
+	This basic script would be useful to process a file with many lines of data. The input and output is not restricted to just .csv and .txt files, although these files are the only one I have tested. 
+	The program and the commands used within it can be applied to get data from many other sources or process many other types of files as well, with appropriate modification. The sort and awk commands are particularly useful in data processing. 
+	Furthermore, more details can be added to the script for enhancing the function. You can add in options for filtering based on more than 1 phrase, or you can have multiple filterings happening. The possibilities are endless by making use of terminal commands. 
+	All in all, file processing can easily be achieved using bash script. So do not be afraid to engage in it - it is fun to do!
+
+*I do not mind this file being shared on Piazza*
+
+

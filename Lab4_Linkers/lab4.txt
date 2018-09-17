@@ -1,0 +1,5 @@
+CHECK YOUR UNDERSTANDING
+- Difference in the functions: the foo function name is changed to _Z3fooii
+- This is useful for the LD_PRELOAD in a sense that...
+
+

@@ -1,0 +1,58 @@
+Statistics:
+
+Simulator file used: simulator.c (one provided by Mike)
+single.txt - Total Cache Hits: 1023 Cache Misses 1 Total Latency: 1123
+regular.txt - Total Cache Hits: 0 Cache Misses 1024 Total Latency: 102400
+random.txt - Total Cache Hits: 15 Cache Misses 1009 Total Latency: 100915
+realistic.txt - Total Cache Hits: 474 Cache Misses 550 Total Latency: 55474
+
+
+------------------------------------------
+
+
+
+1) Keep track of what kind of cache misses occur (cold, capacity, or conflict) 
+The different types of cache misses are:
+Cold miss and Compulsory Miss
+Eviction Policy - adds 100 only for a compulsory miss and adds 1 otherwise.
+Replacement Policy - essentially adds 100 to total latency.
+
+
+2) Our cache is very small--could you increase the number of cachelines?
+Increase the value of E( However, E has never been used in simulator.c)
+
+3) What happens if you shrink the cache any smaller?
+i.e reducing the number of cache sets( S = 2, since there were only 2 sets I changed teh indexStop variable to 1, as we would need only 1 bit
+to represent 2 cache sets)
+
+The following is the statistic for all the traces(.txt files) with S == 2
+single.txt - Total Cache Hits: 1023 Cache Misses 1 Total Latency: 1123( Expected )
+regular.txt - Total Cache Hits: 0 Cache Misses 1024 Total Latency: 102400 ( Expected )
+random.txt - Total Cache Hits: 7 Cache Misses 1017 Total Latency: 101707
+realistic.txt - Total Cache Hits: 263 Cache Misses 761 Total Latency: 76363
+
+The latency for S == 4 and S == 2 differ for the traces random.txt and realistic.txt
+Reasoning: The total latency is essentially based on whether Eviction Policy is
+used or Replacement Policy is used. The policy that is used is dependent on whether a particluar cache is occupied or not.
+Since we dshrank our cache, replacement policy was called a lot more times than eviction policy hence resulting in higher number of cache misses as
+compared to when S == 4.
+
+
+4) Could you add an additional block in our cache to make use of the block offset? - N/A
+
+5) Try running a bigger simulation (will require modifying trace), to run 4096 addresses.
+- Changed trace.c and simulator.c to accomodate 4096 addresses( Results are put-in as answers for the next question )
+
+6) Output a percentage of the cache misses.
+Consider the ratio to be of teh form  #cache_misses : # total_attempts_to_load_data
+
+single.txt - 1 : 4096 ( 0.024 %)
+regular.txt - 4096 : 4096 ( 100 % cache miss)
+random.txt - 4039 : 4096 ( 98.6 % cache miss)
+realistic.tx - 2163 : 4096( 52.8 % cache miss)
+
+7) Create a cache policy where you put something randomly in the cache. This means you have to scan all of the cache lines (Which costs on the latency).
+	- Working on this 
+
+
+	

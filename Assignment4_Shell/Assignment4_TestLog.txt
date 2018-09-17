@@ -1,0 +1,41 @@
+
+>>>>> Spawn the shell <<<<<
+spawn the shell - success
+
+>>>>> Testing the help command <<<<<
+'help' - success
+
+>>>>> Testing the cd to the upper folder command <<<<<
+'cd ..' - success
+
+>>>>> Testing the pwd command <<<<<
+'pwd' - success
+
+>>>>> Testing the pipe <<<<<
+pipe - failed
+
+>>>>> Testing the input redirection <<<<<
+input redirection - failed
+
+>>>>> Testing the output redirection <<<<<
+output redirection - failed
+
+>>>>> Testing the pipe with redirection <<<<<
+pipe with redirection - failed
+
+>>>>> Testing the background <<<<<
+process sent to bg - failed
+bg process completed and cleaned - failed
+
+>>>>> Testing the exit with signal handler <<<<<
+shell alive before SIGINT - failed
+interrupt signal SIGINT handled - success
+
+>>>>> Testing the exit command <<<<<
+shell alive before exit - success
+shell dead after exit - success
+
+==================================================
+Test done - Passed: 7, Failed: 7
+shell exit status: 0
+==================================================

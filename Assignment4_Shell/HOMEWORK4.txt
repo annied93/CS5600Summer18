@@ -1,0 +1,30 @@
+This file documents the error and bugs and limitation of my shell script.
+
+1. The piping process in the script is buggy. It will execute the pipe correctly and 
+produce the desired output, however, after the execution of the right command, it will
+also exit out of the shell execution.
+Essentially, when the commands were executed in the child process of the child of the
+shell execution, it returns to the parent then terminate out of the grandparent after
+execution is finished as well. I am not sure why it is doing this way but I will do my
+best to debug before deadline.
+
+2. The redirection is handled in the script, however it can only execute one redirection
+per command. 
+Essentially, it will execute: echo annie > annie.txt
+but not:
+cat < annie.txt > annie2.txt
+I will atttempt to make the multiple redirection work - the issue has to do with my handling
+of the resetting of the flag, so I will see about fixing it.
+
+3. After I press Ctrl-C to terminate the file, it prints some giberrish from the script
+before the entire shell is terminated. I'm not sure what's the reason but I modify this
+after the given script and when I execute the part 2 code, it does the same thing.
+
+4. I made the assumption that the & will always be at the end of the line, and execute the command
+accordingly. This may cause error along the line for testing.
+
+Thank you, and I hope this documentation helps with explaining the bugs and errors in my
+shell.
+
+DISCLAIMER: This shell is written using the script example from "brennan.io", and the help
+of TA Nakul.
